@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="mr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>संपर्क | Tattvayan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --saffron: #bf7410; --saffron-light: #d9922c; --saffron-glow: rgba(185,107,7,0.18);
+      --cream-bg: #fffdf9; --cream-2: #faf5ed; --cream-card: #fffefb;
+      --text-dark: #1f1a17; --text-mid: #5e5247; --text-faint: #9c8e82;
+      --border: rgba(122,86,29,0.12);
+      --font-display: 'Tiro Devanagari Marathi', serif;
+      --font-body: 'Noto Sans Devanagari', 'Inter', sans-serif;
+    }
+    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: linear-gradient(180deg, var(--cream-bg) 0%, var(--cream-2) 100%); min-height: 100vh; color: var(--text-dark); overflow-x: hidden; }
+
+    /* HEADER */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 999; height: 58px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,253,249,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: box-shadow 0.3s ease; }
+    header.scrolled { box-shadow: 0 4px 24px rgba(72,40,10,0.08); }
+    .logo { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+    .logo-icon { width: 34px; height: 34px; background: linear-gradient(135deg, var(--saffron-light), var(--saffron)); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-family: var(--font-display); font-size: 16px; box-shadow: 0 4px 12px var(--saffron-glow); }
+    .logo-text { font-family: var(--font-display); font-size: 17px; color: var(--text-dark); }
+    .hamburger { width: 40px; height: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; border-radius: 10px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text-dark); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { position: fixed; top: 58px; left: 0; right: 0; background: rgba(255,253,249,0.97); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); padding: 10px 0 20px; z-index: 998; transform: translateY(-110%); opacity: 0; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.25s ease; pointer-events: none; }
+    .mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+    .mobile-menu a { display: flex; align-items: center; justify-content: space-between; padding: 15px 24px; font-size: 15px; font-weight: 500; color: var(--text-dark); text-decoration: none; border-bottom: 1px solid rgba(122,86,29,0.07); }
+    .mobile-menu a .en { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--text-faint); }
+    .mobile-menu a.active-link { color: var(--saffron); }
+    .menu-register-btn { margin: 14px 24px 0; display: flex; align-items: center; justify-content: center; height: 48px; border-radius: 999px; background: linear-gradient(180deg, var(--saffron-light) 0%, var(--saffron) 100%); color: white !important; font-size: 14px; font-weight: 600; box-shadow: 0 8px 20px var(--saffron-glow); border-bottom: none !important; text-decoration: none; }
+    .desktop-nav { display: none; }
+    @media(min-width:768px){
+      .hamburger{display:none;}
+      .desktop-nav{display:flex;align-items:center;gap:4px;}
+      .desktop-nav a{padding:7px 12px;font-size:13px;font-weight:500;color:var(--text-mid);text-decoration:none;border-radius:8px;transition:background 0.2s;}
+      .desktop-nav a:hover{background:rgba(122,86,29,0.07);color:var(--text-dark);}
+      .desktop-nav .nav-cta{margin-left:8px;padding:7px 16px;background:linear-gradient(180deg,var(--saffron-light),var(--saffron));color:white;border-radius:999px;font-weight:600;font-size:13px;}
+    }
+
+    /* PAGE HERO */
+    .page-hero { padding: 100px 24px 48px; text-align: center; max-width: 480px; margin: 0 auto; position: relative; }
+    .page-hero::before { content:''; position:absolute; top:80px; left:50%; transform:translateX(-50%); width:260px; height:260px; background:radial-gradient(ellipse,rgba(185,107,7,0.07),transparent 70%); border-radius:50%; pointer-events:none; }
+    .page-eyebrow { font-family:'Inter',sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.16em; color:var(--saffron); margin-bottom:14px; display:flex; align-items:center; justify-content:center; gap:8px; }
+    .page-eyebrow::before,.page-eyebrow::after{content:'';display:block;width:20px;height:1px;background:var(--saffron);opacity:0.4;}
+    .page-title { font-family:var(--font-display); font-size:clamp(36px,10vw,56px); color:var(--text-dark); line-height:1.1; margin-bottom:16px; position:relative; z-index:1; }
+    .page-subtitle { font-size:15px; color:var(--text-mid); line-height:1.75; max-width:30ch; margin:0 auto; }
+
+    /* CONTENT */
+    .content-wrap { max-width: 480px; margin: 0 auto; padding: 0 24px 80px; }
+
+    /* Section divider */
+    .sec-divider { display:flex; align-items:center; gap:12px; margin:36px 0 20px; }
+    .sec-divider::before,.sec-divider::after{content:'';flex:1;height:1px;background:var(--border);}
+    .sec-divider-label{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--saffron);white-space:nowrap;}
+
+    /* Quick contact cards */
+    .quick-contacts { display: flex; flex-direction: column; gap: 12px; margin-bottom: 8px; }
+    .qc-card {
+      display: flex; align-items: center; gap: 16px;
+      padding: 18px 20px; border-radius: 20px;
+      background: var(--cream-card); border: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(72,40,10,0.05);
+      text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .qc-card:active { transform: scale(0.98); box-shadow: 0 1px 6px rgba(72,40,10,0.06); }
+    .qc-icon { width: 50px; height: 50px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+    .qc-icon.wa  { background: rgba(37,211,102,0.1);  border: 1px solid rgba(37,211,102,0.2); }
+    .qc-icon.ig  { background: rgba(225,48,108,0.08); border: 1px solid rgba(225,48,108,0.15); }
+    .qc-icon.yt  { background: rgba(255,0,0,0.08);    border: 1px solid rgba(255,0,0,0.14); }
+    .qc-icon.fb  { background: rgba(24,119,242,0.08); border: 1px solid rgba(24,119,242,0.15); }
+    .qc-icon.mail{ background: rgba(185,107,7,0.08);  border: 1px solid rgba(185,107,7,0.15); }
+    .qc-body { flex: 1; }
+    .qc-platform { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.11em; color: var(--text-faint); margin-bottom: 3px; }
+    .qc-handle { font-size: 16px; font-weight: 600; color: var(--text-dark); }
+    .qc-desc { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-faint); margin-top: 2px; }
+    .qc-arrow { font-size: 18px; color: var(--saffron); opacity: 0.6; margin-left: auto; flex-shrink: 0; }
+
+    /* WhatsApp featured card */
+    .wa-featured {
+      background: linear-gradient(145deg, #0a2010, #0d2a14);
+      border-radius: 24px; padding: 26px 24px;
+      position: relative; overflow: hidden; margin-bottom: 12px;
+      text-decoration: none; display: block;
+      transition: transform 0.2s;
+    }
+    .wa-featured:active { transform: scale(0.98); }
+    .wa-featured::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 20%,rgba(37,211,102,0.18),transparent 55%); }
+    .wa-featured-inner { position: relative; z-index: 1; }
+    .wa-label { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: rgba(37,211,102,0.7); margin-bottom: 10px; }
+    .wa-title { font-family: var(--font-display); font-size: clamp(20px,5vw,26px); color: #f0fff4; line-height: 1.2; margin-bottom: 8px; }
+    .wa-sub { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(144,238,144,0.55); line-height: 1.6; margin-bottom: 20px; }
+    .wa-btn { display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 22px; border-radius: 999px; background: rgba(37,211,102,0.18); border: 1px solid rgba(37,211,102,0.3); color: rgba(144,238,144,0.95); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; }
+    .wa-number { position: absolute; bottom: 20px; right: 24px; font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(37,211,102,0.4); font-weight: 600; }
+
+    /* Message form */
+    .message-form { background: var(--cream-card); border: 1px solid var(--border); border-radius: 22px; overflow: hidden; box-shadow: 0 4px 20px rgba(72,40,10,0.05); }
+    .form-header { padding: 18px 20px; background: linear-gradient(135deg,rgba(217,146,44,0.08),rgba(185,107,7,0.03)); border-bottom: 1px solid var(--border); }
+    .form-header-title { font-family: var(--font-display); font-size: 18px; color: var(--text-dark); }
+    .form-header-sub { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-faint); margin-top: 3px; }
+    .form-body { padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: var(--text-mid); }
+    .form-input, .form-textarea, .form-select {
+      width: 100%; border: 1.5px solid var(--border);
+      border-radius: 12px; padding: 12px 14px;
+      font-family: var(--font-body); font-size: 15px;
+      color: var(--text-dark); background: var(--cream-bg);
+      outline: none; transition: border-color 0.2s;
+      appearance: none; -webkit-appearance: none;
+    }
+    .form-input:focus,.form-textarea:focus,.form-select:focus { border-color: var(--saffron); background: var(--cream-card); }
+    .form-input::placeholder,.form-textarea::placeholder { color: var(--text-faint); }
+    .form-textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+    .form-select-wrap { position: relative; }
+    .form-select-arrow { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--text-faint); font-size: 12px; }
+    .form-submit { margin: 4px 20px 20px; display: flex; align-items: center; justify-content: center; height: 52px; border-radius: 999px; background: linear-gradient(180deg,var(--saffron-light),var(--saffron)); color: white; font-size: 15px; font-weight: 600; border: none; cursor: pointer; box-shadow: 0 8px 20px var(--saffron-glow); transition: transform 0.2s; font-family: var(--font-body); }
+    .form-submit:active { transform: scale(0.97); }
+
+    /* Success state */
+    .form-success { display: none; padding: 32px 20px; text-align: center; }
+    .form-success-icon { font-size: 48px; margin-bottom: 16px; }
+    .form-success-title { font-family: var(--font-display); font-size: 22px; color: var(--text-dark); margin-bottom: 8px; }
+    .form-success-sub { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text-faint); line-height: 1.6; }
+
+    /* Location card */
+    .location-card { background: var(--cream-card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; box-shadow: 0 2px 12px rgba(72,40,10,0.05); }
+    .location-map-placeholder { width: 100%; height: 160px; background: linear-gradient(135deg,rgba(185,107,7,0.08),rgba(217,146,44,0.05)); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border-bottom: 1px solid var(--border); }
+    .map-pin-icon { font-size: 32px; }
+    .map-label { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-faint); }
+    .location-row { display: flex; align-items: center; gap: 14px; padding: 16px 20px; border-bottom: 1px solid rgba(122,86,29,0.07); }
+    .location-row:last-child { border-bottom: none; }
+    .location-icon { width: 38px; height: 38px; border-radius: 11px; background: rgba(185,107,7,0.07); border: 1px solid rgba(185,107,7,0.12); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .location-label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); margin-bottom: 2px; }
+    .location-value { font-size: 15px; font-weight: 500; color: var(--text-dark); }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item { background: var(--cream-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+    .faq-q { padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; gap: 12px; }
+    .faq-q-text { font-size: 15px; font-weight: 500; color: var(--text-dark); flex: 1; }
+    .faq-arrow { font-size: 13px; color: var(--text-faint); transition: transform 0.3s; flex-shrink: 0; }
+    .faq-arrow.open { transform: rotate(180deg); }
+    .faq-ans { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.16,1,0.3,1); }
+    .faq-ans.open { max-height: 200px; }
+    .faq-ans-inner { padding: 0 18px 16px; border-top: 1px solid var(--border); padding-top: 12px; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-faint); line-height: 1.7; }
+
+    /* CTA */
+    .cta-strip { background: linear-gradient(145deg,#2a1f0e,#1a1208); border-radius: 22px; padding: 30px 24px; text-align: center; position: relative; overflow: hidden; margin-top: 8px; }
+    .cta-strip::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 0%,rgba(217,146,44,0.22),transparent 65%); }
+    .cta-content { position: relative; z-index: 1; }
+    .cta-title { font-family: var(--font-display); font-size: 22px; color: #fff8ee; margin-bottom: 8px; }
+    .cta-sub { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,220,160,0.6); line-height: 1.6; margin-bottom: 20px; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; height: 50px; padding: 0 28px; border-radius: 999px; background: linear-gradient(180deg,var(--saffron-light),var(--saffron)); color: white; font-size: 15px; font-weight: 600; text-decoration: none; box-shadow: 0 8px 24px var(--saffron-glow); transition: transform 0.2s; }
+    .btn-primary:active { transform: scale(0.97); }
+
+    /* FOOTER */
+    footer { background: #1a1208; padding: 48px 24px 32px; }
+    .footer-inner { max-width: 480px; margin: 0 auto; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .footer-logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg,var(--saffron-light),var(--saffron)); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-family: var(--font-display); font-size: 17px; }
+    .footer-logo-text { font-family: var(--font-display); font-size: 18px; color: #fff8ee; }
+    .footer-tagline { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,220,160,0.45); line-height: 1.6; margin-bottom: 28px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .footer-links a { padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(185,107,7,0.2); font-family: 'Inter', sans-serif; font-size: 12px; color: rgba(255,220,160,0.7); text-decoration: none; }
+    .footer-divider { height: 1px; background: rgba(185,107,7,0.1); margin-bottom: 20px; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .footer-copy { font-family: 'Inter', sans-serif; font-size: 11px; color: rgba(255,220,160,0.3); }
+    .footer-domain { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--saffron); opacity: 0.6; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<header id="mainHeader">
+  <a href="index.html" class="logo">
+    <div class="logo-icon">त</div>
+    <span class="logo-text">तत्त्वयान</span>
+  </a>
+  <nav class="desktop-nav">
+    <a href="index.html">Home</a>
+    <a href="satsang.html">Satsang</a>
+    <a href="preacher.html">Preacher</a>
+    <a href="donation.html">Donation</a>
+    <a href="contact.html">Contact</a>
+    <a href="about.html">About</a>
+    <a href="index.html#register" class="nav-cta">Register</a>
+  </nav>
+  <button class="hamburger" id="menuBtn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 मुख्यपृष्ठ <span class="en">Home</span></a>
+  <a href="satsang.html">🕉 सत्संग <span class="en">Satsang</span></a>
+  <a href="preacher.html">🙏 प्रवचनकार <span class="en">Preacher</span></a>
+  <a href="donation.html">💛 दान <span class="en">Donation</span></a>
+  <a href="contact.html" class="active-link">📞 संपर्क <span class="en">Contact</span></a>
+  <a href="about.html">ℹ️ आमच्याबद्दल <span class="en">About</span></a>
+  <a href="index.html#register" class="menu-register-btn">✨ Register as Devotee</a>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <p class="page-eyebrow">आमच्याशी बोला</p>
+  <h1 class="page-title">संपर्क करा</h1>
+  <p class="page-subtitle">प्रश्न, सत्संग माहिती किंवा नोंदणीसाठी — आम्ही नेहमी उपलब्ध आहोत. 🙏</p>
+</div>
+
+<div class="content-wrap">
+
+  <!-- WhatsApp featured -->
+  <a href="https://wa.me/917709270492" target="_blank" rel="noopener" class="wa-featured">
+    <div class="wa-featured-inner">
+      <p class="wa-label">⚡ सर्वात जलद · Fastest Response</p>
+      <p class="wa-title">WhatsApp वर<br/>संपर्क करा</p>
+      <p class="wa-sub">सत्संगाची वेळ, ठिकाण किंवा<br/>कोणत्याही प्रश्नासाठी.</p>
+      <div class="wa-btn">💬 WhatsApp करा →</div>
+    </div>
+    <span class="wa-number">+91 77092 70492</span>
+  </a>
+
+  <!-- Quick contacts -->
+  <div class="sec-divider"><span class="sec-divider-label">सोशल मीडिया</span></div>
+  <div class="quick-contacts">
+    <a href="https://www.instagram.com/tattvayan" target="_blank" rel="noopener" class="qc-card">
+      <div class="qc-icon ig">📸</div>
+      <div class="qc-body">
+        <p class="qc-platform">Instagram</p>
+        <p class="qc-handle">@tattvayan</p>
+        <p class="qc-desc">सत्संगाचे फोटो, Reels, Updates</p>
+      </div>
+      <span class="qc-arrow">›</span>
+    </a>
+    <a href="https://www.youtube.com/@tattvayan" target="_blank" rel="noopener" class="qc-card">
+      <div class="qc-icon yt">▶️</div>
+      <div class="qc-body">
+        <p class="qc-platform">YouTube</p>
+        <p class="qc-handle">@tattvayan</p>
+        <p class="qc-desc">प्रवचने, कीर्तन, भगवद्गीता</p>
+      </div>
+      <span class="qc-arrow">›</span>
+    </a>
+    <a href="mailto:tattvayan@gmail.com" class="qc-card">
+      <div class="qc-icon mail">✉️</div>
+      <div class="qc-body">
+        <p class="qc-platform">Email</p>
+        <p class="qc-handle">tattvayan@gmail.com</p>
+        <p class="qc-desc">औपचारिक चौकशीसाठी</p>
+      </div>
+      <span class="qc-arrow">›</span>
+    </a>
+  </div>
+
+  <!-- Message form -->
+  <div class="sec-divider"><span class="sec-divider-label">संदेश पाठवा</span></div>
+  <div class="message-form" id="messageForm">
+    <div class="form-header">
+      <p class="form-header-title">आम्हाला लिहा</p>
+      <p class="form-header-sub">आम्ही १-२ दिवसांत उत्तर देऊ.</p>
+    </div>
+    <div class="form-body" id="formBody">
+      <div class="form-group">
+        <label class="form-label" for="nameInput">आपले नाव *</label>
+        <input type="text" id="nameInput" class="form-input" placeholder="नाव टाका..." required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="phoneInput">मोबाईल नंबर</label>
+        <input type="tel" id="phoneInput" class="form-input" placeholder="+91 XXXXX XXXXX" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="topicSelect">विषय *</label>
+        <div class="form-select-wrap">
+          <select id="topicSelect" class="form-select form-input">
+            <option value="" disabled selected>विषय निवडा...</option>
+            <option value="satsang">सत्संग माहिती</option>
+            <option value="register">Devotee नोंदणी</option>
+            <option value="preacher">प्रवचनकार संपर्क</option>
+            <option value="donation">दान विषयी</option>
+            <option value="other">इतर</option>
+          </select>
+          <span class="form-select-arrow">▾</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="msgInput">संदेश *</label>
+        <textarea id="msgInput" class="form-textarea" placeholder="आपला संदेश लिहा..."></textarea>
+      </div>
+    </div>
+    <button class="form-submit" id="formSubmitBtn" onclick="submitForm()">🙏 संदेश पाठवा</button>
+    <div class="form-success" id="formSuccess">
+      <div class="form-success-icon">🌸</div>
+      <p class="form-success-title">संदेश मिळाला!</p>
+      <p class="form-success-sub">आपला संदेश आम्हाला मिळाला.<br/>आम्ही लवकरच संपर्क करू. हरे कृष्ण! 🙏</p>
+    </div>
+  </div>
+
+  <!-- Location -->
+  <div class="sec-divider"><span class="sec-divider-label">स्थान</span></div>
+  <div class="location-card">
+    <div class="location-map-placeholder">
+      <span class="map-pin-icon">📍</span>
+      <span class="map-label">नाशिक, महाराष्ट्र</span>
+    </div>
+    <div class="location-row">
+      <div class="location-icon">🏙️</div>
+      <div>
+        <p class="location-label">शहर</p>
+        <p class="location-value">नाशिक, महाराष्ट्र, भारत</p>
+      </div>
+    </div>
+    <div class="location-row">
+      <div class="location-icon">🕉</div>
+      <div>
+        <p class="location-label">मुख्य संस्था</p>
+        <p class="location-value">ISKCON नाशिक</p>
+      </div>
+    </div>
+    <div class="location-row">
+      <div class="location-icon">📅</div>
+      <div>
+        <p class="location-label">सत्संग</p>
+        <p class="location-value">शनि · सोम · शुक्र</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="sec-divider"><span class="sec-divider-label">वारंवार विचारले जाणारे प्रश्न</span></div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">सत्संगात येण्यासाठी नोंदणी आवश्यक आहे का?</span>
+        <span class="faq-arrow">▾</span>
+      </div>
+      <div class="faq-ans">
+        <div class="faq-ans-inner">नाही, सत्संगात थेट येऊ शकता. परंतु Devotee म्हणून Register केल्यास सत्संगाची वेळ, ठिकाण आणि विशेष कार्यक्रमांची माहिती आधी मिळते.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">सत्संगात कोण येऊ शकते?</span>
+        <span class="faq-arrow">▾</span>
+      </div>
+      <div class="faq-ans">
+        <div class="faq-ans-inner">सर्वांचे स्वागत आहे — वय, जात, धर्म यांचे बंधन नाही. श्रीकृष्णभक्तीमध्ये रुची असणारा कोणीही येऊ शकतो. प्रवेश संपूर्णपणे विनामूल्य आहे.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">सत्संगाची नक्की वेळ कधी जाहीर होईल?</span>
+        <span class="faq-arrow">▾</span>
+      </div>
+      <div class="faq-ans">
+        <div class="faq-ans-inner">लवकरच जाहीर होईल. WhatsApp वर +91 77092 70492 वर संपर्क करा किंवा Register करा — वेळ जाहीर होताच आम्ही सूचित करू.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">प्रवचनकारांशी वैयक्तिक बोलता येते का?</span>
+        <span class="faq-arrow">▾</span>
+      </div>
+      <div class="faq-ans">
+        <div class="faq-ans-inner">होय, सत्संगानंतर मारुती प्राणदास यांच्याशी वैयक्तिक बोलता येते. किंवा WhatsApp द्वारे प्रश्न पाठवू शकता.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-strip">
+    <div class="cta-content">
+      <p class="cta-title">हरे कृष्ण! 🙏</p>
+      <p class="cta-sub">Register करा आणि तत्त्वयान<br/>परिवाराचा भाग व्हा.</p>
+      <a href="index.html#register" class="btn-primary">✨ Register as Devotee</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div class="footer-logo-icon">त</div>
+      <span class="footer-logo-text">तत्त्वयान</span>
+    </div>
+    <p class="footer-tagline">आध्यात्मिक मार्गदर्शन, सत्संग आणि श्रीकृष्णाशी जीवनभराचं नातं.</p>
+    <div class="footer-links">
+      <a href="index.html">मुख्यपृष्ठ</a>
+      <a href="satsang.html">सत्संग</a>
+      <a href="preacher.html">प्रवचनकार</a>
+      <a href="donation.html">दान</a>
+      <a href="contact.html">संपर्क</a>
+      <a href="about.html">आमच्याबद्दल</a>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 तत्त्वयान. All rights reserved.</span>
+      <a href="https://tattvayan.com" class="footer-domain" target="_blank">tattvayan.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const btn = document.getElementById('menuBtn'), menu = document.getElementById('mobileMenu');
+  btn.addEventListener('click', () => { btn.classList.toggle('open'); menu.classList.toggle('open'); });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { btn.classList.remove('open'); menu.classList.remove('open'); }));
+  window.addEventListener('scroll', () => document.getElementById('mainHeader').classList.toggle('scrolled', scrollY > 10));
+
+  function toggleFaq(el) {
+    const ans = el.nextElementSibling;
+    const arrow = el.querySelector('.faq-arrow');
+    const isOpen = ans.classList.contains('open');
+    document.querySelectorAll('.faq-ans').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-arrow').forEach(a => a.classList.remove('open'));
+    if (!isOpen) { ans.classList.add('open'); arrow.classList.add('open'); }
+  }
+
+  function submitForm() {
+    const name = document.getElementById('nameInput').value.trim();
+    const topic = document.getElementById('topicSelect').value;
+    const msg = document.getElementById('msgInput').value.trim();
+    if (!name || !topic || !msg) {
+      alert('कृपया सर्व आवश्यक माहिती भरा (*).'); return;
+    }
+    document.getElementById('formBody').style.display = 'none';
+    document.getElementById('formSubmitBtn').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+</script>
+</body>
+</html>

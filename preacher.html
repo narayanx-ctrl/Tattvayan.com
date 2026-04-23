@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="mr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>प्रवचनकार | Tattvayan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --saffron: #bf7410; --saffron-light: #d9922c; --saffron-glow: rgba(185,107,7,0.18);
+      --cream-bg: #fffdf9; --cream-2: #faf5ed; --cream-card: #fffefb;
+      --text-dark: #1f1a17; --text-mid: #5e5247; --text-faint: #9c8e82;
+      --border: rgba(122,86,29,0.12);
+      --font-display: 'Tiro Devanagari Marathi', serif;
+      --font-body: 'Noto Sans Devanagari', 'Inter', sans-serif;
+    }
+    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: linear-gradient(180deg, var(--cream-bg) 0%, var(--cream-2) 100%); min-height: 100vh; color: var(--text-dark); overflow-x: hidden; }
+
+    /* HEADER */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 999; height: 58px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,253,249,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: box-shadow 0.3s ease; }
+    header.scrolled { box-shadow: 0 4px 24px rgba(72,40,10,0.08); }
+    .logo { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+    .logo-icon { width: 34px; height: 34px; background: linear-gradient(135deg, var(--saffron-light), var(--saffron)); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-family: var(--font-display); font-size: 16px; box-shadow: 0 4px 12px var(--saffron-glow); }
+    .logo-text { font-family: var(--font-display); font-size: 17px; color: var(--text-dark); }
+    .hamburger { width: 40px; height: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; border-radius: 10px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text-dark); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { position: fixed; top: 58px; left: 0; right: 0; background: rgba(255,253,249,0.97); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); padding: 10px 0 20px; z-index: 998; transform: translateY(-110%); opacity: 0; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.25s ease; pointer-events: none; }
+    .mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+    .mobile-menu a { display: flex; align-items: center; justify-content: space-between; padding: 15px 24px; font-size: 15px; font-weight: 500; color: var(--text-dark); text-decoration: none; border-bottom: 1px solid rgba(122,86,29,0.07); }
+    .mobile-menu a .en { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--text-faint); }
+    .mobile-menu a.active-link { color: var(--saffron); }
+    .menu-register-btn { margin: 14px 24px 0; display: flex; align-items: center; justify-content: center; height: 48px; border-radius: 999px; background: linear-gradient(180deg, var(--saffron-light) 0%, var(--saffron) 100%); color: white !important; font-size: 14px; font-weight: 600; box-shadow: 0 8px 20px var(--saffron-glow); border-bottom: none !important; text-decoration: none; }
+    .desktop-nav { display: none; }
+    @media(min-width:768px){
+      .hamburger{display:none;}
+      .desktop-nav{display:flex;align-items:center;gap:4px;}
+      .desktop-nav a{padding:7px 12px;font-size:13px;font-weight:500;color:var(--text-mid);text-decoration:none;border-radius:8px;transition:background 0.2s;}
+      .desktop-nav a:hover{background:rgba(122,86,29,0.07);color:var(--text-dark);}
+      .desktop-nav .nav-cta{margin-left:8px;padding:7px 16px;background:linear-gradient(180deg,var(--saffron-light),var(--saffron));color:white;border-radius:999px;font-weight:600;font-size:13px;}
+    }
+
+    /* HERO CARD — dark cinematic */
+    .hero-card {
+      margin: 74px 16px 0;
+      border-radius: 28px; overflow: hidden;
+      background: #100d08;
+      position: relative;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+    }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 75% 25%, rgba(217,146,44,0.3), transparent 55%), radial-gradient(ellipse at 15% 80%, rgba(185,107,7,0.2), transparent 50%), linear-gradient(145deg, #2a1f0e 0%, #1a1208 50%, #0a0804 100%); }
+    .hero-dots { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(185,107,7,0.15) 1px, transparent 1px); background-size: 22px 22px; opacity: 0.5; }
+    .hero-rings { position: absolute; top: -50px; right: -50px; width: 260px; height: 260px; pointer-events: none; }
+    .hero-rings circle { fill: none; stroke: rgba(185,107,7,0.12); }
+    .hero-om { position: absolute; bottom: -20px; left: -12px; font-family: var(--font-display); font-size: 180px; color: rgba(185,107,7,0.05); line-height: 1; pointer-events: none; user-select: none; }
+    .hero-inner { position: relative; z-index: 2; padding: 36px 28px 32px; }
+    .hero-role-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; background: rgba(185,107,7,0.2); border: 1px solid rgba(185,107,7,0.3); font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--saffron-light); margin-bottom: 20px; }
+    .hero-avatar-ring {
+      width: 100px; height: 100px; border-radius: 50%;
+      border: 2px solid rgba(185,107,7,0.45);
+      box-shadow: 0 0 0 8px rgba(185,107,7,0.07), 0 8px 32px rgba(0,0,0,0.4);
+      background: linear-gradient(135deg, rgba(217,146,44,0.2), rgba(185,107,7,0.1));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 40px; margin-bottom: 20px;
+    }
+    .hero-name { font-family: var(--font-display); font-size: clamp(30px, 8vw, 42px); color: #fff8ee; line-height: 1.1; margin-bottom: 8px; }
+    .hero-title-en { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,220,160,0.55); letter-spacing: 0.04em; margin-bottom: 20px; }
+    .hero-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+    .hero-chip { padding: 5px 12px; border-radius: 999px; background: rgba(185,107,7,0.18); border: 1px solid rgba(185,107,7,0.28); font-family: 'Inter', sans-serif; font-size: 12px; color: rgba(255,220,160,0.85); font-weight: 500; }
+    .hero-quote { border-left: 2px solid rgba(185,107,7,0.4); padding-left: 14px; font-family: var(--font-display); font-size: 16px; color: rgba(255,248,238,0.75); line-height: 1.5; font-style: italic; }
+
+    /* CONTENT */
+    .content-wrap { max-width: 480px; margin: 0 auto; padding: 32px 24px 80px; }
+
+    /* section divider */
+    .sec-divider { display: flex; align-items: center; gap: 12px; margin: 36px 0 20px; }
+    .sec-divider::before,.sec-divider::after { content:''; flex:1; height:1px; background:var(--border); }
+    .sec-divider-label { font-family:'Inter',sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.14em; color:var(--saffron); white-space:nowrap; }
+
+    /* Bio paragraphs */
+    .bio-para { font-size: 15px; color: var(--text-mid); line-height: 1.8; margin-bottom: 16px; }
+    .bio-para:last-child { margin-bottom: 0; }
+    .bio-highlight { color: var(--text-dark); font-weight: 600; }
+
+    /* Stats */
+    .stats-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 8px; }
+    .stat-card { background: var(--cream-card); border: 1px solid var(--border); border-radius: 16px; padding: 18px 10px; text-align: center; box-shadow: 0 2px 8px rgba(72,40,10,0.04); }
+    .stat-value { font-family: var(--font-display); font-size: 26px; color: var(--saffron); line-height: 1; margin-bottom: 6px; }
+    .stat-label { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--text-faint); line-height: 1.4; }
+
+    /* Topics accordion */
+    .accordion { display: flex; flex-direction: column; gap: 10px; margin-bottom: 8px; }
+    .accordion-item { background: var(--cream-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(72,40,10,0.04); }
+    .accordion-header { padding: 16px 18px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .accordion-icon { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, rgba(217,146,44,0.14), rgba(185,107,7,0.07)); border: 1px solid rgba(185,107,7,0.15); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+    .accordion-title { font-family: var(--font-display); font-size: 17px; color: var(--text-dark); flex: 1; }
+    .accordion-arrow { font-size: 13px; color: var(--text-faint); transition: transform 0.3s ease; }
+    .accordion-arrow.open { transform: rotate(180deg); }
+    .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.16,1,0.3,1); }
+    .accordion-body.open { max-height: 300px; }
+    .accordion-inner { padding: 0 18px 18px; border-top: 1px solid var(--border); padding-top: 14px; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-faint); line-height: 1.7; }
+
+    /* Satsang preview */
+    .satsang-preview { background: var(--cream-card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; box-shadow: 0 2px 12px rgba(72,40,10,0.05); margin-bottom: 8px; }
+    .satsang-preview-header { background: linear-gradient(135deg, rgba(217,146,44,0.1), rgba(185,107,7,0.04)); padding: 14px 18px; border-bottom: 1px solid var(--border); }
+    .sp-label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.13em; color: var(--saffron); }
+    .satsang-preview-row { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-bottom: 1px solid rgba(122,86,29,0.06); }
+    .satsang-preview-row:last-child { border-bottom: none; }
+    .sp-badge { width: 44px; height: 44px; background: linear-gradient(135deg, rgba(217,146,44,0.14), rgba(185,107,7,0.08)); border: 1px solid rgba(185,107,7,0.16); border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sp-day-mr { font-family: var(--font-display); font-size: 13px; color: var(--saffron); line-height: 1; }
+    .sp-day-en { font-family: 'Inter', sans-serif; font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--saffron); opacity: 0.7; }
+    .sp-loc { font-family: var(--font-display); font-size: 16px; color: var(--text-dark); }
+    .sp-addr { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-faint); margin-top: 2px; }
+    .sp-arrow { margin-left: auto; color: var(--saffron); font-size: 14px; opacity: 0.6; }
+
+    /* Contact card */
+    .contact-card { background: var(--cream-card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; box-shadow: 0 2px 12px rgba(72,40,10,0.05); }
+    .cc-row { display: flex; align-items: center; gap: 14px; padding: 16px 20px; border-bottom: 1px solid rgba(122,86,29,0.06); text-decoration: none; transition: background 0.2s; }
+    .cc-row:last-child { border-bottom: none; }
+    .cc-row:active { background: rgba(185,107,7,0.04); }
+    .cc-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .cc-icon.wa { background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.2); }
+    .cc-icon.ig { background: rgba(225,48,108,0.08); border: 1px solid rgba(225,48,108,0.15); }
+    .cc-icon.yt { background: rgba(255,0,0,0.08); border: 1px solid rgba(255,0,0,0.15); }
+    .cc-label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); margin-bottom: 2px; }
+    .cc-value { font-size: 15px; font-weight: 500; color: var(--text-dark); }
+    .cc-arrow { margin-left: auto; color: var(--text-faint); font-size: 14px; }
+
+    /* CTA */
+    .cta-strip { background: linear-gradient(145deg,#2a1f0e,#1a1208); border-radius: 22px; padding: 30px 24px; text-align: center; position: relative; overflow: hidden; margin-top: 8px; }
+    .cta-strip::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 0%,rgba(217,146,44,0.22),transparent 65%); }
+    .cta-content { position: relative; z-index: 1; }
+    .cta-title { font-family: var(--font-display); font-size: 22px; color: #fff8ee; margin-bottom: 8px; }
+    .cta-sub { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,220,160,0.6); line-height: 1.6; margin-bottom: 20px; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; height: 50px; padding: 0 28px; border-radius: 999px; background: linear-gradient(180deg,var(--saffron-light),var(--saffron)); color: white; font-size: 15px; font-weight: 600; text-decoration: none; box-shadow: 0 8px 24px var(--saffron-glow); transition: transform 0.2s; }
+    .btn-primary:active { transform: scale(0.97); }
+
+    /* FOOTER */
+    footer { background: #1a1208; padding: 48px 24px 32px; }
+    .footer-inner { max-width: 480px; margin: 0 auto; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .footer-logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg,var(--saffron-light),var(--saffron)); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-family: var(--font-display); font-size: 17px; }
+    .footer-logo-text { font-family: var(--font-display); font-size: 18px; color: #fff8ee; }
+    .footer-tagline { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,220,160,0.45); line-height: 1.6; margin-bottom: 28px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .footer-links a { padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(185,107,7,0.2); font-family: 'Inter', sans-serif; font-size: 12px; color: rgba(255,220,160,0.7); text-decoration: none; }
+    .footer-divider { height: 1px; background: rgba(185,107,7,0.1); margin-bottom: 20px; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .footer-copy { font-family: 'Inter', sans-serif; font-size: 11px; color: rgba(255,220,160,0.3); }
+    .footer-domain { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--saffron); opacity: 0.6; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<header id="mainHeader">
+  <a href="index.html" class="logo">
+    <div class="logo-icon">त</div>
+    <span class="logo-text">तत्त्वयान</span>
+  </a>
+  <nav class="desktop-nav">
+    <a href="index.html">Home</a>
+    <a href="satsang.html">Satsang</a>
+    <a href="preacher.html">Preacher</a>
+    <a href="donation.html">Donation</a>
+    <a href="contact.html">Contact</a>
+    <a href="about.html">About</a>
+    <a href="index.html#register" class="nav-cta">Register</a>
+  </nav>
+  <button class="hamburger" id="menuBtn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 मुख्यपृष्ठ <span class="en">Home</span></a>
+  <a href="satsang.html">🕉 सत्संग <span class="en">Satsang</span></a>
+  <a href="preacher.html" class="active-link">🙏 प्रवचनकार <span class="en">Preacher</span></a>
+  <a href="donation.html">💛 दान <span class="en">Donation</span></a>
+  <a href="contact.html">📞 संपर्क <span class="en">Contact</span></a>
+  <a href="about.html">ℹ️ आमच्याबद्दल <span class="en">About</span></a>
+  <a href="index.html#register" class="menu-register-btn">✨ Register as Devotee</a>
+</nav>
+
+<!-- HERO CARD -->
+<div class="hero-card">
+  <div class="hero-bg"></div>
+  <div class="hero-dots"></div>
+  <svg class="hero-rings" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="130" cy="130" r="80" stroke-width="1"/>
+    <circle cx="130" cy="130" r="110" stroke-width="0.5"/>
+    <circle cx="130" cy="130" r="125" stroke-width="0.3"/>
+  </svg>
+  <div class="hero-om">ॐ</div>
+  <div class="hero-inner">
+    <div class="hero-role-badge">🕉 ISKCON · मुख्य प्रवचनकार</div>
+    <div class="hero-avatar-ring">🙏</div>
+    <h1 class="hero-name">मारुती प्राणदास</h1>
+    <p class="hero-title-en">Maruti Pranadas · Spiritual Speaker · Nashik</p>
+    <div class="hero-chips">
+      <span class="hero-chip">📍 नाशिक</span>
+      <span class="hero-chip">📖 भगवद्गीता</span>
+      <span class="hero-chip">🎙 प्रवचन</span>
+      <span class="hero-chip">२० + वर्षे</span>
+    </div>
+    <blockquote class="hero-quote">
+      "श्रीकृष्णाशी नातं म्हणजे फक्त पूजा नव्हे — ते एक जिवंत संवाद आहे."
+    </blockquote>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <!-- Bio -->
+  <div class="sec-divider"><span class="sec-divider-label">परिचय</span></div>
+  <p class="bio-para">
+    <span class="bio-highlight">मारुती प्राणदास</span> हे २००६ पासून ISKCON नाशिक येथे साधना करणारे समर्पित भक्त आहेत. त्यांनी आपले जीवन श्रीकृष्णभक्तीच्या प्रचारासाठी वाहिले आहे.
+  </p>
+  <p class="bio-para">
+    ते <span class="bio-highlight">श्रीमद् भगवद्गीता, भागवत पुराण</span> आणि भक्तीशास्त्राच्या माध्यमातून आधुनिक जीवनातील गुंतागुंतीच्या प्रश्नांना — नाती, करिअर, ताणतणाव, आणि जीवनाचा अर्थ — सखोल आणि व्यावहारिक उत्तरे देतात.
+  </p>
+  <p class="bio-para">
+    त्यांचे प्रवचन <span class="bio-highlight">मराठी भाषेत</span> असल्याने सामान्य माणसालाही सहज समजते. तत्त्वयान सत्संगाद्वारे ते नाशिकमधील शेकडो भाविकांपर्यंत श्रीकृष्णाचा संदेश पोहोचवतात.
+  </p>
+
+  <!-- Stats -->
+  <div class="sec-divider"><span class="sec-divider-label">अनुभव</span></div>
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-value">२०+</div>
+      <div class="stat-label">वर्षांचा भक्ती अनुभव</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">३</div>
+      <div class="stat-label">साप्ताहिक सत्संग</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">१८</div>
+      <div class="stat-label">गीतेचे अध्याय</div>
+    </div>
+  </div>
+
+  <!-- Topics accordion -->
+  <div class="sec-divider"><span class="sec-divider-label">प्रवचन विषय</span></div>
+  <div class="accordion">
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <div class="accordion-icon">📖</div>
+        <span class="accordion-title">भगवद्गीता</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-inner">श्रीमद् भगवद्गीतेचे १८ अध्याय सोप्या मराठी भाषेत समजावून सांगणे. प्रत्येक श्लोकाचा आजच्या जीवनाशी संबंध लावणे. अर्जुनाच्या प्रश्नांतून आपले प्रश्न सोडवणे.</div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <div class="accordion-icon">🧘</div>
+        <span class="accordion-title">ध्यान आणि साधना</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-inner">दैनंदिन जीवनात भक्तीयोग कसा आचरण करायचा. हरे कृष्ण महामंत्राचे महत्त्व आणि जप पद्धती. मन शांत ठेवण्यासाठी आध्यात्मिक साधना.</div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <div class="accordion-icon">👨‍👩‍👧</div>
+        <span class="accordion-title">नाती आणि जीवन</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-inner">कुटुंब, नाती, करिअर यांना आध्यात्मिक दृष्टिकोनातून कसे जगायचे. ताणतणाव, चिंता, नैराश्य यावर भक्तीमार्गाचा उपाय. श्रीकृष्णाला आपला सखा मानून जगण्याची कला.</div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <div class="accordion-icon">🏛️</div>
+        <span class="accordion-title">ISKCON तत्त्वज्ञान</span>
+        <span class="accordion-arrow">▾</span>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-inner">श्रील प्रभुपादांच्या शिकवणुकीवर आधारित भक्तीमार्ग. वैष्णव परंपरेचे महत्त्व आणि सध्याच्या काळात त्याची प्रासंगिकता. चार नियामक तत्त्वे आणि भक्तिमय जीवन.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Satsang schedule preview -->
+  <div class="sec-divider"><span class="sec-divider-label">सत्संग वेळापत्रक</span></div>
+  <div class="satsang-preview">
+    <div class="satsang-preview-header"><span class="sp-label">साप्ताहिक सत्संग · ३ ठिकाणी</span></div>
+    <a href="satsang.html" class="satsang-preview-row" style="text-decoration:none;">
+      <div class="sp-badge"><span class="sp-day-mr">शनि</span><span class="sp-day-en">SAT</span></div>
+      <div><p class="sp-loc">भगूर</p><p class="sp-addr">📍 भगूर, नाशिक</p></div>
+      <span class="sp-arrow">›</span>
+    </a>
+    <a href="satsang.html" class="satsang-preview-row" style="text-decoration:none;">
+      <div class="sp-badge"><span class="sp-day-mr">सोम</span><span class="sp-day-en">MON</span></div>
+      <div><p class="sp-loc">जगन्नाथ मंदिर</p><p class="sp-addr">📍 जगन्नाथ मंदिर, नाशिक</p></div>
+      <span class="sp-arrow">›</span>
+    </a>
+    <a href="satsang.html" class="satsang-preview-row" style="text-decoration:none;">
+      <div class="sp-badge"><span class="sp-day-mr">शुक्र</span><span class="sp-day-en">FRI</span></div>
+      <div><p class="sp-loc">इंदिरा नगर</p><p class="sp-addr">📍 इंदिरा नगर, नाशिक</p></div>
+      <span class="sp-arrow">›</span>
+    </a>
+  </div>
+
+  <!-- Contact / Social -->
+  <div class="sec-divider"><span class="sec-divider-label">संपर्क करा</span></div>
+  <div class="contact-card">
+    <a href="https://wa.me/917709270492" target="_blank" rel="noopener" class="cc-row">
+      <div class="cc-icon wa">💬</div>
+      <div><p class="cc-label">WhatsApp</p><p class="cc-value">+91 77092 70492</p></div>
+      <span class="cc-arrow">›</span>
+    </a>
+    <a href="https://www.instagram.com/tattvayan" target="_blank" rel="noopener" class="cc-row">
+      <div class="cc-icon ig">📸</div>
+      <div><p class="cc-label">Instagram</p><p class="cc-value">@tattvayan</p></div>
+      <span class="cc-arrow">›</span>
+    </a>
+    <a href="https://www.youtube.com/@tattvayan" target="_blank" rel="noopener" class="cc-row">
+      <div class="cc-icon yt">▶️</div>
+      <div><p class="cc-label">YouTube</p><p class="cc-value">@tattvayan</p></div>
+      <span class="cc-arrow">›</span>
+    </a>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-strip">
+    <div class="cta-content">
+      <p class="cta-title">सत्संगात या 🙏</p>
+      <p class="cta-sub">मारुती प्राणदास यांच्या प्रवचनाचा<br/>लाभ घ्या — Register करा.</p>
+      <a href="index.html#register" class="btn-primary">✨ Register as Devotee</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div class="footer-logo-icon">त</div>
+      <span class="footer-logo-text">तत्त्वयान</span>
+    </div>
+    <p class="footer-tagline">आध्यात्मिक मार्गदर्शन, सत्संग आणि श्रीकृष्णाशी जीवनभराचं नातं.</p>
+    <div class="footer-links">
+      <a href="index.html">मुख्यपृष्ठ</a>
+      <a href="satsang.html">सत्संग</a>
+      <a href="preacher.html">प्रवचनकार</a>
+      <a href="donation.html">दान</a>
+      <a href="contact.html">संपर्क</a>
+      <a href="about.html">आमच्याबद्दल</a>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 तत्त्वयान. All rights reserved.</span>
+      <a href="https://tattvayan.com" class="footer-domain" target="_blank">tattvayan.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const btn = document.getElementById('menuBtn'), menu = document.getElementById('mobileMenu');
+  btn.addEventListener('click', () => { btn.classList.toggle('open'); menu.classList.toggle('open'); });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { btn.classList.remove('open'); menu.classList.remove('open'); }));
+  window.addEventListener('scroll', () => document.getElementById('mainHeader').classList.toggle('scrolled', scrollY > 10));
+
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    const arrow = header.querySelector('.accordion-arrow');
+    const isOpen = body.classList.contains('open');
+    document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.accordion-arrow').forEach(a => a.classList.remove('open'));
+    if (!isOpen) { body.classList.add('open'); arrow.classList.add('open'); }
+  }
+</script>
+</body>
+</html>
